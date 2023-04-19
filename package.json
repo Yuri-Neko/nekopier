@@ -1,0 +1,30 @@
+{
+  "name": "website-downloader",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./bin/www",
+  "scripts": {
+    "start": "node run.js",
+    "dev": "export NODE_ENV=Development && npm start"
+  },
+  "dependencies": {
+    "archiver": "^3.1.1",
+    "chalk": "^4.1.2",
+    "colors": "^1.4.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dreidels": "^0.6.1",
+    "express": "~4.17.3",
+    "figlet": "^1.6.0",
+    "hbs": "~4.2.0",
+    "http-errors": "~1.6.3",
+    "jszip": "^3.8.0",
+    "moment-timezone": "^0.5.43",
+    "morgan": "~1.9.1",
+    "node-cron": "^3.0.2",
+    "socket.io": "^2.5.0",
+    "socket.io-client": "^2.5.0",
+    "spinnies": "^0.5.1"
+  }
+}

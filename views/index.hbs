@@ -1,0 +1,36 @@
+<!-- partial:index.partial.html -->
+ <div aria-busy="true" id="progress" hidden aria-label="Loading, please wait." role="progressbar"></div>
+<main role="main">
+  <img src="http://storage.neko.pe/file/s~u-Eqwep6l8phE5JFL~.png" width="50" alt="" />
+  <h1>Nekopier</h1>
+  <p>Download all the source code and assets of any website </p>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-12" style="float: none; margin: 0 auto;">
+      <div id="row g-3">
+          <form method="get" class="form mt-2" action="/search">
+        <div class="input-group col-md-12">
+                <input type="text" required class="form-control" id="website" placeholder="https://www.google.com" />         
+                    <button class="btn btn-dark" id="download" type="button">
+                       Fetch Assets <i class="glyphicon glyphicon-download"></i>
+                    </button>
+                <br>
+              </form>
+        </div><br>
+      </div>
+      <br>
+    </div>
+  </div>
+  <h5 hidden id='nFilesP'>Total Downloaded file: <span  id='nFiles' style="color: red;font-weight: bold">10</span></h5>
+  <p hidden class="log" id='log'></p>
+<div hidden id="m" class="card text-start mb-2 text-wrap">
+<pre></pre>
+</div>
+   <textarea style="display: none" class="form-control mt-1 mb-1" style="color: #ff0000;" readonly id="ta"></textarea>
+   <input style="display: none" class="form-control text-secondary"  type="text" readonly id="resulturl">
+  <button style="display: none" class="btn btn-success mt-2 mb-2" id="dlbtn">Download website assets</button>
+  <button style="display: none" class="btn btn-dark" id="cpl">Copy Link Download</button>
+</div> 
+</main>
+<!-- partial -->
+  
