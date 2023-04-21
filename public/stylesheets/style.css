@@ -1,3 +1,4 @@
+@font-face{font-family:boo;src:url(/stylesheets/ibx.ttf)}
 #progress {
   position: absolute;
   top: 0;
@@ -140,7 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Avenir Next, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family:boo;
   background-color: #f5f5f5;
 }
 
@@ -173,7 +174,7 @@ h1 {
 
 p {
   margin: 0;
-  font-size: .875em;
+  font-size: 12px;
   font-weight: 400;
 }
 

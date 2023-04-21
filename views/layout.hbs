@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <link rel='stylesheet' href='/stylesheets/style.css' />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script src="/socket.io/socket.io.js"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
   <title>{{title}}</title>
   <style>
- pre {
-  overflow: auto;
+  #m {
   height: 100px;
-  background: #fff;
+  overflow: auto;
+  background: #232323;
+  width:auto;
+  max-width:350px; 
+  height:300px; 
+  max-height:300px; 
+}
+ ul {
   padding:3px;
   margin:3px;
   color: gray;
-   width:300px; /* or whatever width you want. */
-   max-width:300px; 
 }	
+input:focus {   
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 0px 0px #232323 !important;
+  outline: 0 none;
+}
+
    </style>
 </head>
   <body>
@@ -42,6 +53,8 @@ if (location.protocol !== 'https:') {
   var ta = document.getElementById("ta");
   const copyLinkBtn= document.getElementById('cpl')
   const tocp = document.getElementById('resulturl')
+ let messageList = document.querySelector("ul");
+ let consoleDiv = document.getElementById('m');
   const downloadWebsite = document.getElementById('dlbtn')
   // connect to current socket.io server
   var socket = io.connect(document.URL);
@@ -80,8 +93,8 @@ if (location.protocol !== 'https:') {
         const log = document.getElementById('log');
         if(event.progress.includes('200 OK'))
         numberOfFiles++;
-document.getElementById('m').hidden=false;
-        
+        document.getElementById('base').hidden=false; 
+        consoleDiv.hidden=false; 
         document.getElementById('nFilesP').hidden=false;
         document.getElementById('nFiles').innerHTML=numberOfFiles 
         log.innerHTML=(`<code> ${event.progress}</code><br>`)
@@ -91,12 +104,13 @@ document.getElementById('m').hidden=false;
   
   // Download a website on click
    const downloadBtn =  document.getElementById("download");
-   downloadBtn.onclick=()=>{
+   $("#mf").submit(function(event){
+        event.preventDefault(); 
         var website = document.getElementById('website').value
-        if(!website) return alert("Insert url first")
+        if(!website.includes("http")) return alert("Insert url ")
         console.log("Now downloading the website ... %s",website)
         socket.emit('request', { token: localStorage['token'] , website});
-   }
+   })
    
   // Generate token for each user for the first time.
   function generateToken(n) {
@@ -115,12 +129,24 @@ function copy(id) {
   document.execCommand('copy');
   return alert('Link Copied!')
 }
-   let messageList = document.querySelector("pre");
    function logh(message) {
-   const li = document.createElement("code");
-   li.innerHTML = `<small style="color:crimson">neko@site:~#</small> ${message}\n`;
+   var atBottom = isElementScrolledToBottom(consoleDiv);
+   const li = document.createElement("li");
+   li.innerHTML = `root@neko~# <small style="color:white">${message.replace("# \n", "# ").replace(".  ", "")}</small> `;
    messageList.append(li);
+   scrollToBottom(consoleDiv);
  }
+ function isElementScrolledToBottom(el) {
+  if (el.scrollTop >= (el.scrollHeight - el.offsetHeight)) {
+      return true;
+  }
+  return false;
+}
+
+//function to scroll to bottom
+function scrollToBottom(el) {
+  el.scrollTop = el.scrollHeight;
+}
 </script>
 </body>
 </html>
